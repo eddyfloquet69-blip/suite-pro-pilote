@@ -131,7 +131,7 @@
       const valid=total.value.trim()!==""&&Number.isFinite(val)&&val>=0&&val<=10000;
       let missing=[...form.querySelectorAll('input[name="manque"]:checked')].map(x=>x.value);
       let difference=valid?val-19.90:null;
-      diff.textContent=valid?euro.format(difference):"À préciser";
+      diff.textContent=(valid&&n>=2&&!missing.length)?euro.format(difference):"—";
       let status="",info="";
       if(!valid){status="Coût à vérifier";info="Indiquez le coût mensuel HT des logiciels payants potentiellement résiliables.";}
       else if(n<2){status="Peu adapté";info="Nous ne pouvons pas vous promettre d'économies sur plusieurs logiciels si vous en utilisez moins de deux de manière payante et remplaçable.";}
@@ -148,7 +148,7 @@
         "Budget mensuel HT déclaré : "+(valid?euro.format(val):"non précisé"),
         "Outils (facultatif) : "+(names.value.trim()||"non précisé"),
         "Fonctions indispensables absentes : "+(missing.length?missing.join(", "):"aucune signalée"),
-        "Différence THÉORIQUE mensuelle avant migration / frais : "+(valid?euro.format(difference):"non calculable"),
+        "Différence THÉORIQUE mensuelle avant migration / frais : "+(valid&&n>=2&&!missing.length?euro.format(difference):"non validable (critères non satisfaits)"),
         "Résultat indicatif : "+status,
         "Origine : "+safeSource,
         "", "Je comprends qu'il ne s'agit ni d'une commande ni d'une offre commerciale disponible."
