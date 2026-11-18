@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <meta name="description" content="Vérifiez en moins de deux minutes si Suite Pro pourrait remplacer vos logiciels payants. Simulation transparente et candidature pilote sans engagement.">
+  <title>Candidature au pilote — Suite Pro</title>
+  <style>
+  :root{--ink:#142440;--navy:#111d37;--blue:#355ed0;--muted:#52637f;--line:#e0e7f1;--light:#f5f7fc;--good:#086951}
+  *{box-sizing:border-box}
+  html{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);line-height:1.55;background:var(--light)}
+  body{margin:0}button,input,select{font:inherit}button{cursor:pointer}a{color:#2857bf}
+  header{background:var(--navy);color:white;padding:17px 0}
+  .wrap{width:min(1020px,calc(100% - 34px));margin:0 auto}.nav{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+  .logo{color:#fff;text-decoration:none;font-size:1.55rem;font-weight:900;letter-spacing:-.065em}.logo span{color:#9db8ff}
+  .back{color:#d4e1fb;text-decoration:none;font-size:.89rem}.back:hover{text-decoration:underline}
+  main{padding:46px 0 64px}.eyebrow{color:#3155ab;font-weight:800;font-size:.79rem;text-transform:uppercase;letter-spacing:.12em}
+  h1{font-size:clamp(1.7rem,4vw,3rem);letter-spacing:-.055em;line-height:1.13;margin:8px 0 12px}
+  h2{font-size:1.2rem;letter-spacing:-.02em;margin:0 0 12px}.muted{color:var(--muted)}.lead{font-size:1.1rem;max-width:720px}
+  .shell{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:20px;margin-top:28px;align-items:start}
+  .panel,.summary{background:white;border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 30px #172b4510;padding:25px}
+  .block{padding:0 0 24px;margin-bottom:24px;border-bottom:1px solid var(--line)}
+  .block:last-child{border:0;margin:0;padding:0}
+  .hint{color:var(--muted);font-size:.9rem;margin:3px 0 14px}
+  label.caption{display:block;font-weight:720;font-size:.91rem;margin-bottom:8px}
+  input[type=number],input[type=text],select{width:100%;border:1px solid #c7d3e5;border-radius:9px;padding:12px;background:#fff;color:var(--ink)}
+  input:focus,select:focus{outline:3px solid #c7d9ff;outline-offset:1px}
+  .choices{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+  .radio{position:relative}.radio input{position:absolute;opacity:0;inset:0}.radio span{display:flex;justify-content:center;align-items:center;min-height:48px;border:1px solid #c8d5e7;border-radius:10px;font-weight:800;background:#fff}
+  .radio input:checked+span{background:#e7efff;border-color:#385fc5;color:#2351ba}
+  .radio input:focus-visible+span{outline:3px solid #9cbaff;outline-offset:2px}
+  .checks{display:grid;gap:10px}.checks label{display:flex;align-items:flex-start;gap:10px;font-size:.95rem}.checks input{width:18px;height:18px;flex:none;margin:3px 0}
+  .summary{position:sticky;top:16px;background:#15294d;color:white}.summary .small{color:#c2d1ed;font-size:.85rem}
+  .amount{font-size:2.6rem;letter-spacing:-.06em;line-height:1.2;font-weight:850;margin:10px 0 2px}.signal{display:inline-block;margin:12px 0 10px;padding:5px 10px;border-radius:50px;font-weight:750;background:#344a72;color:#fff;font-size:.8rem}
+  .summary p{color:#e6edfb;font-size:.9rem}.summary .action{width:100%;padding:13px;background:#e2ecff;color:#173966;text-align:center;text-decoration:none;display:block;font-weight:800;border:0;border-radius:10px;margin-top:16px}
+  .summary .action:hover{background:white}.summary .copy{width:100%;padding:10px;background:transparent;color:#d5e2ff;border:1px solid #7184ad;border-radius:9px;margin-top:9px}
+  .summary .copy:hover{background:#21385e}
+  .summary hr{border:0;border-top:1px solid #425576;margin:17px 0}
+  .footnote{font-size:.78rem;line-height:1.5}
+  footer{background:#fff;border-top:1px solid var(--line);padding:27px 0;font-size:.88rem;color:var(--muted)}
+  footer .links{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  #resultText{min-height:110px}
+  @media(max-width:790px){main{padding:26px 0 45px}.shell{grid-template-columns:1fr}.summary{position:static;order:-1}.panel,.summary{padding:19px}.choices{grid-template-columns:repeat(4,1fr)}}
+  </style>
+</head>
+<body>
+  <header><div class="wrap nav"><a class="logo" href="./">suite<span>pro</span></a><a class="back" href="./demo.html">← Voir la démonstration interactive</a></div></header>
+  <main class="wrap">
+    <div class="eyebrow">Candidature pilote · Sans engagement</div>
+    <h1>Suite Pro serait-il vraiment moins cher pour votre entreprise ?</h1>
+    <p class="lead muted">Répondez à quelques questions pour vérifier si notre future suite pourrait remplacer <strong>au moins deux logiciels payants</strong>. Pas de comptable à contacter, pas de facture à fournir.</p>
+    <div class="shell">
+      <form class="panel" id="audit" action="#" novalidate>
+        <div class="block">
+          <h2>1. Votre activité</h2>
+          <label class="caption" for="secteur">Secteur professionnel</label>
+          <select id="secteur">
+            <option value="Non précisé">Choisir (facultatif)</option>
+            <option>Nettoyage et services</option><option>Événementiel</option><option>Photographie et création</option>
+            <option>Informatique et maintenance</option><option>Coaching et conseil</option><option>Autre activité de services</option>
+          </select>
+        </div>
+        <div class="block">
+          <h2>2. Vos logiciels payants réellement remplaçables</h2>
+          <p class="hint">Ne comptez pas la banque, l'assurance, la comptabilité, les outils gratuits ou un logiciel dont vous avez absolument besoin de conserver les fonctions.</p>
+          <div class="choices" role="group" aria-label="Nombre de logiciels payants résiliables">
+            <label class="radio"><input type="radio" name="outils" value="0" checked><span>0</span></label>
+            <label class="radio"><input type="radio" name="outils" value="1"><span>1</span></label>
+            <label class="radio"><input type="radio" name="outils" value="2"><span>2</span></label>
+            <label class="radio"><input type="radio" name="outils" value="3"><span>3 ou +</span></label>
+          </div>
+          <div style="margin-top:17px">
+            <label class="caption" for="total">Coût total de ces seuls outils, par mois (en € HT)</label>
+            <input id="total" type="number" inputmode="decimal" min="0" max="10000" step="0.01" value="0" aria-describedby="coutHint">
+            <p id="coutHint" class="hint">Une estimation suffit pour décider si le test mérite votre temps. Sans justificatif, le gain reste hypothétique.</p>
+          </div>
+          <label class="caption" for="noms" style="margin-top:12px">Noms de vos outils actuels (facultatif)</label>
+          <input type="text" id="noms" maxlength="200" placeholder="Par ex. : CRM, agenda, gestion de devis">
+        </div>
+        <div class="block">
+          <h2>3. Fonctions indispensables</h2>
+          <p class="hint">Cochez les fonctions que vous ne pouvez pas supprimer de votre organisation actuelle.</p>
+          <div class="checks">
+            <label><input type="checkbox" name="manque" value="Facturation électronique conforme"><span>Facturation électronique conforme</span></label>
+            <label><input type="checkbox" name="manque" value="Synchronisation Google / Outlook"><span>Agenda synchronisé avec Google ou Outlook</span></label>
+            <label><input type="checkbox" name="manque" value="Multi-utilisateurs"><span>Plusieurs salariés avec des comptes séparés</span></label>
+            <label><input type="checkbox" name="manque" value="Encaissement en ligne"><span>Encaissement en ligne ou gestion de paiements</span></label>
+            <label><input type="checkbox" name="manque" value="Autre fonction à préciser"><span>Autre fonction absente, à préciser</span></label>
+          </div>
+          <p class="hint" style="margin-top:13px">Ces fonctionnalités ne sont pas disponibles dans la démonstration. Vous pouvez malgré tout envoyer un retour.</p>
+        </div>
+        <div class="block">
+          <h2>4. Votre intérêt</h2>
+          <div class="checks">
+            <label><input type="checkbox" id="interesse"><span>Je souhaite participer à une démonstration de 10 minutes, sans engagement.</span></label>
+          </div>
+          <p class="hint">Ce site ne crée aucun compte, ne prélève aucun paiement et n'enregistre pas vos réponses sur un serveur.</p>
+        </div>
+      </form>
+      <aside class="summary" aria-live="polite">
+        <div class="small">Prix futur envisagé, par utilisateur</div>
+        <div class="amount">19,90 € <span style="font-size:1rem">HT/mois</span></div>
+        <div class="small">Non commercialisé à ce jour</div>
+        <hr>
+        <div class="small">Différence mensuelle théorique, hors migration et options</div>
+        <div class="amount" id="difference">—</div>
+        <div class="signal" id="signal">À vérifier</div>
+        <p id="resultText">Choisissez le nombre de logiciels que Suite Pro pourrait remplacer, puis saisissez leur coût réel.</p>
+        <hr>
+        <a class="action" id="send" href="mailto:eddyfloquet69@gmail.com?subject=Suite%20Pro%20-%20Retour%20pilote">Préparer ma demande par email</a>
+        <button class="copy" id="copy" type="button">Copier mon message</button>
+        <p class="small footnote" id="copyInfo" role="status"></p>
+        <p class="small footnote">Un clic sur « Préparer » ouvre votre messagerie : aucun envoi n'est effectué sans votre confirmation. Le texte contient uniquement les informations saisies volontairement sur cette page.</p>
+      </aside>
+    </div>
+  </main>
+  <footer><div class="wrap links"><span>Suite Pro — projet pilote. Les économies simulées ne sont jamais des économies constatées.</span><a href="./">Page d'accueil</a></div></footer>
+  <script>
+  (() => {
+    "use strict";
+    const form=document.getElementById("audit"),total=document.getElementById("total"),sector=document.getElementById("secteur");
+    const names=document.getElementById("noms"),interest=document.getElementById("interesse");
+    const diff=document.getElementById("difference"),signal=document.getElementById("signal"),result=document.getElementById("resultText");
+    const send=document.getElementById("send"),copy=document.getElementById("copy"),copyInfo=document.getElementById("copyInfo");
+    const euro=new Intl.NumberFormat("fr-FR",{style:"currency",currency:"EUR"});
+    let message="";
+    function render(){
+      let n=Number(form.querySelector('input[name="outils"]:checked').value);
+      let val=Number(total.value);
+      const valid=total.value.trim()!==""&&Number.isFinite(val)&&val>=0&&val<=10000;
+      let missing=[...form.querySelectorAll('input[name="manque"]:checked')].map(x=>x.value);
+      let difference=valid?val-19.90:null;
+      diff.textContent=valid?euro.format(difference):"À préciser";
+      let status="",info="";
+      if(!valid){status="Coût à vérifier";info="Indiquez le coût mensuel HT des logiciels payants potentiellement résiliables.";}
+      else if(n<2){status="Peu adapté";info="Nous ne pouvons pas vous promettre d'économies sur plusieurs logiciels si vous en utilisez moins de deux de manière payante et remplaçable.";}
+      else if(val<=19.90){status="Pas d'économie";info="Vos logiciels actuels coûtent déjà autant ou moins que notre prix envisagé. Les conserver peut être préférable.";}
+      else if(missing.length){status="Fonctions manquantes";info="L'outil actuel ne couvre pas certaines fonctions indispensables. Le remplacement et l'économie ne sont donc pas démontrés.";}
+      else{status="Pilote à étudier";info="Vous pourriez correspondre à notre recherche de pilotes. La différence affichée n'est pas un gain réalisé et dépend de la résiliation effective des outils, des coûts supplémentaires et du prix final.";}
+      signal.textContent=status;result.textContent=info;
+      const source=new URLSearchParams(location.search).get("source");
+      const safeSource=["site","demo","nettoyage","evenementiel","photo","partenaire"].includes(source)?source:"site";
+      const fields=[
+        "Bonjour,", "", "Je souhaite "+(interest.checked?"tester le prototype Suite Pro pendant une démonstration de 10 minutes.":"vous faire un retour sur votre projet Suite Pro."),
+        "Secteur : "+sector.value,
+        "Nombre d'outils payants potentiellement résiliables : "+(n===3?"3 ou plus":n),
+        "Budget mensuel HT déclaré : "+(valid?euro.format(val):"non précisé"),
+        "Outils (facultatif) : "+(names.value.trim()||"non précisé"),
+        "Fonctions indispensables absentes : "+(missing.length?missing.join(", "):"aucune signalée"),
+        "Différence THÉORIQUE mensuelle avant migration / frais : "+(valid?euro.format(difference):"non calculable"),
+        "Résultat indicatif : "+status,
+        "Origine : "+safeSource,
+        "", "Je comprends qu'il ne s'agit ni d'une commande ni d'une offre commerciale disponible."
+      ];
+      message=fields.join("\n");
+      const subject=(interest.checked?"Suite Pro - Candidature pilote":"Suite Pro - Retour sur le prototype");
+      send.href="mailto:eddyfloquet69@gmail.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(message);
+      send.textContent=interest.checked?"Préparer ma candidature par email":"Envoyer mon retour par email";
+    }
+    form.addEventListener("input",render);
+    form.addEventListener("change",render);
+    copy.addEventListener("click", async ()=>{
+      try{await navigator.clipboard.writeText(message);copyInfo.textContent="Message copié. Collez-le dans votre messagerie pour l'envoyer.";}
+      catch{copyInfo.textContent="Copie non disponible dans ce navigateur. Utilisez le lien email ci-dessus.";}
+    });
+    render();
+  })();
+  </script>
+</body>
+</html>
