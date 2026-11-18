@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Démonstration interactive fictive de Suite Pro : clients, rendez-vous, devis, demandes et relances.">
+<title>Démonstration interactive — Suite Pro</title>
+<style>
+:root{--ink:#152340;--blue:#355fce;--shade:#f5f7fc;--line:#e2e8f2;--muted:#64728b;--green:#12755d}
+*{box-sizing:border-box}html{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink)}body{margin:0;background:var(--shade)}button,a{font:inherit}button{cursor:pointer}a{color:var(--blue)}
+header{background:#111e39;color:white;padding:16px 0}.wrap{width:min(1140px,calc(100% - 32px));margin:auto}.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.brand{font-weight:900;letter-spacing:-.06em;font-size:1.5rem}.brand span{color:#9ebaff}.home{color:#e5ebff;text-decoration:none;font-size:.9rem}.notice{background:#e8efff;border-bottom:1px solid #cad9fb;padding:12px 0;font-size:.9rem;color:#263c70}
+.layout{display:grid;grid-template-columns:225px 1fr;gap:22px;padding:30px 0 45px}.menu{background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px;height:max-content;position:sticky;top:18px}.menu button{display:block;text-align:left;width:100%;border:0;border-radius:10px;padding:13px 12px;background:#fff;font-weight:650;color:#52617b;margin-bottom:4px}.menu button[aria-selected=true]{background:#eaf0ff;color:#264ba5}.menu button:hover{background:#f0f4fc}.menu .small{margin:15px 8px 6px;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.topline{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px}.topline h1{font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.05em;margin:0}.sub{color:var(--muted);font-size:.95rem;margin:.2rem 0 0}
+.cta,.primary{border:0;background:var(--blue);color:#fff;border-radius:10px;padding:11px 16px;text-decoration:none;font-weight:750;display:inline-block}.cta:hover,.primary:hover{background:#274ba6}.secondary{background:white;color:var(--blue);border:1px solid #b7c7f3;padding:10px 15px;border-radius:10px;font-weight:700}.secondary:hover{background:#f1f5ff}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:14px 0 22px}.kpi,.panel{background:white;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 8px 24px #10244608}.kpi strong{font-size:1.9rem;display:block;line-height:1.3}.kpi small{color:var(--muted)}.panel{min-height:330px}.panel h2{margin:0 0 10px;font-size:1.15rem}.panel p{color:var(--muted)}.hrow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+table{width:100%;border-collapse:collapse;text-align:left;font-size:.93rem}td,th{padding:15px 10px;border-bottom:1px solid var(--line)}th{color:#697890;font-size:.8rem;letter-spacing:.03em}tr:last-child td{border-bottom:0}.status{display:inline-block;border-radius:30px;font-size:.78rem;padding:4px 10px;font-weight:750;background:#edf3ff;color:#3151a3}.status.green{background:#e2f5ec;color:#126b51}.status.gold{background:#fff3d9;color:#8b5a00}.cardgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.mini{border:1px solid var(--line);border-radius:12px;padding:17px}.mini b{display:block}.mini span{font-size:.9rem;color:var(--muted)}.hint{font-size:.86rem;background:#f3f6fc;border-radius:9px;padding:12px;margin-top:18px;color:#51617b}.toast{display:none;margin:0 0 18px;padding:12px 15px;border-radius:10px;background:#e0f5e9;color:#155b45;font-weight:700}.toast.visible{display:block}.money{font-variant-numeric:tabular-nums}
+footer{border-top:1px solid var(--line);padding:25px 0;background:white;color:var(--muted);font-size:.9rem}.foot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+@media(max-width:820px){.layout{grid-template-columns:1fr;padding-top:18px}.menu{position:static;display:flex;flex-wrap:wrap;gap:5px;padding:8px}.menu .small{display:none}.menu button{width:auto;margin:0;font-size:.85rem;padding:10px 12px}.kpis{grid-template-columns:repeat(2,1fr)}.panel{overflow-x:auto}}
+@media(max-width:510px){.cardgrid{grid-template-columns:1fr}.kpis{gap:8px}.kpi{padding:13px}.kpi strong{font-size:1.5rem}.topline{align-items:start}.hrow .primary{width:100%}table{font-size:.8rem}td,th{padding:12px 7px}.status{font-size:.7rem}}
+</style>
+</head>
+<body>
+<header><div class="wrap bar"><div class="brand">suite<span>pro</span> <small style="font-size:.65rem;letter-spacing:0;color:#a5b8e1;font-weight:600">DÉMO</small></div><a class="home" href="./">← Retour au site</a></div></header>
+<div class="notice"><div class="wrap"><b>Visite interactive sans engagement.</b> Toutes les entreprises, personnes, montants et tâches affichés sont fictifs. Aucun compte créé, aucune donnée envoyée.</div></div>
+<div class="wrap layout">
+<nav class="menu" aria-label="Modules de démonstration">
+<div class="small">Votre espace</div>
+<button data-tab="dashboard" aria-selected="true">Tableau de bord</button>
+<button data-tab="clients" aria-selected="false">Clients</button>
+<button data-tab="agenda" aria-selected="false">Rendez-vous</button>
+<button data-tab="devis" aria-selected="false">Devis</button>
+<button data-tab="demandes" aria-selected="false">Demandes</button>
+<button data-tab="taches" aria-selected="false">Relances et tâches</button>
+</nav>
+<main>
+<div class="topline"><div><h1 id="heading">Tableau de bord</h1><p class="sub" id="subtitle">La journée type d'une TPE de services, avec des données inventées.</p></div><a class="cta" href="mailto:eddyfloquet69@gmail.com?subject=Suite%20Pro%20-%20Candidature%20pilote&body=Bonjour%2C%20je%20souhaite%20%C3%A9changer%20pour%20tester%20Suite%20Pro.%0AMon%20secteur%20%3A%0AMes%20logiciels%20payants%20actuels%20%3A%0A">Demander un pilote</a></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div id="content"></div>
+</main>
+</div>
+<footer><div class="wrap foot"><span>Suite Pro — démonstration fictive du parcours. Le produit complet n'est pas commercialisé.</span><a href="./">Comparer le prix envisagé de 19,90 € HT/mois</a></div></footer>
+<script>
+const state={clients:[["Atelier Lemaire","Professionnel","contact confirmé"],["Studio Lumen","Professionnel","devis en attente"],["Léa Bernard","Particulier","client actif"]],agenda:[["09:30","Atelier Lemaire","Réunion de cadrage"],["14:00","Studio Lumen","Présentation devis"]],devis:[["DEV-2026-018","Studio Lumen",480,"À valider"],["DEV-2026-019","Atelier Lemaire",290,"Envoyé"]],demandes:[["Studio Lumen","Modification de prestation","À traiter"],["Léa Bernard","Question sur rendez-vous","Résolue"]],taches:[["Relancer devis Studio Lumen","Aujourd'hui",false],["Confirmer rendez-vous Atelier Lemaire","Demain",false]]};
+const euro=n=>new Intl.NumberFormat("fr-FR",{style:"currency",currency:"EUR"}).format(n);
+const root=document.getElementById("content"),title=document.getElementById("heading"),subtitle=document.getElementById("subtitle"),toast=document.getElementById("toast");
+const subtitles={dashboard:"Vos informations rassemblées en une vue.",clients:"Une fiche contact pour suivre vos échanges.",agenda:"Vos rendez-vous dans le même espace.",devis:"Des devis de démonstration, non fiscaux.",demandes:"Suivez les demandes sans perdre le fil.",taches:"Les rappels et actions à ne pas oublier."};
+let current="dashboard";
+function badge(s){return '<span class="status '+(s==="Résolue"||s==="Terminé"?"green":s==="À traiter"||s==="À valider"?"gold":"")+'">'+s+'</span>'}
+function table(headers,rows){return '<table><thead><tr>'+headers.map(x=>'<th scope="col">'+x+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(v=>'<td>'+v+'</td>').join('')+'</tr>').join('')+'</tbody></table>'}
+function flash(s){toast.textContent=s;toast.classList.add("visible");}
+function render(which){
+current=which;title.textContent=which==="dashboard"?"Tableau de bord":({clients:"Clients",agenda:"Rendez-vous",devis:"Devis",demandes:"Demandes",taches:"Relances et tâches"})[which];subtitle.textContent=subtitles[which];toast.classList.remove("visible");document.querySelectorAll("[data-tab]").forEach(b=>{b.setAttribute("aria-selected",String(b.dataset.tab===which));});let html="";
+if(which==="dashboard"){const actions=state.demandes.filter(x=>x[2]==="À traiter").length+state.taches.filter(x=>!x[2]).length;html='<div class="kpis">'+[[state.clients.length,"Clients"],[state.agenda.length,"Rendez-vous"],[state.devis.length,"Devis"],[actions,"Actions à suivre"]].map(k=>'<div class="kpi"><strong>'+k[0]+'</strong><small>'+k[1]+'</small></div>').join('')+'</div><div class="panel"><h2>Votre travail en un seul endroit</h2><p>Explorez les modules à gauche. Vous pouvez déclencher des actions fictives et voir les chiffres évoluer.</p><div class="cardgrid">'+[['clients',"1. Ouvrir les contacts","Retrouver l'historique client"],['agenda',"2. Organiser un rendez-vous","Voir les engagements"],['devis',"3. Préparer un devis","Suivre les propositions"],['demandes',"4. Traiter une demande","Affecter une action"],['taches',"5. Finaliser une relance","Ne plus perdre de suivi"]].map(x=>'<button class="secondary" data-goto="'+x[0]+'" style="text-align:left">'+x[1]+'</button>').join('')+'</div><div class="hint">Cette interface montre un parcours de démonstration limité. Les données se réinitialisent en actualisant la page.</div></div>'}
+if(which==="clients"){html='<div class="panel"><div class="hrow"><h2>Fichier clients fictif</h2><button class="primary" id="action">Ajouter un contact fictif</button></div>'+table(["Nom","Type","Suivi"],state.clients.map(c=>[c[0],c[1],badge(c[2])]))+'<div class="hint">Pas de synchronisation CRM externe dans cette démonstration.</div></div>'}
+if(which==="agenda"){html='<div class="panel"><div class="hrow"><h2>Agenda de démonstration</h2><button class="primary" id="action">Ajouter un rendez-vous fictif</button></div>'+table(["Horaire","Client","Motif"],state.agenda)+'<div class="hint">Les créneaux présentés sont inventés. Aucun calendrier Google ou Outlook n’est connecté.</div></div>'}
+if(which==="devis"){html='<div class="panel"><div class="hrow"><h2>Propositions commerciales fictives</h2><button class="primary" id="action">Créer un devis fictif</button></div>'+table(["Référence","Client","Montant","Statut"],state.devis.map(d=>[d[0],d[1],'<span class="money">'+euro(d[2])+'</span>',badge(d[3])]))+'<div class="hint">Les montants ne correspondent à aucune vente et aucun document n’est transmis. La facturation électronique n’est pas incluse.</div></div>'}
+if(which==="demandes"){html='<div class="panel"><div class="hrow"><h2>Demandes entrantes fictives</h2><button class="primary" id="action">Traiter la première demande</button></div>'+table(["Client","Demande","Statut"],state.demandes.map(d=>[d[0],d[1],badge(d[2])]))+'<div class="hint">La démo n’envoie aucun message aux clients.</div></div>'}
+if(which==="taches"){html='<div class="panel"><div class="hrow"><h2>Votre liste de relances fictives</h2><button class="primary" id="action">Terminer la première tâche</button></div>'+table(["Tâche","Échéance","Statut"],state.taches.map(t=>[t[0],t[1],badge(t[2]?"Terminé":"À faire")]))+'<div class="hint">Les tâches ne déclenchent aucun SMS ni email.</div></div>'}
+root.innerHTML=html;
+root.querySelectorAll("[data-goto]").forEach(b=>b.addEventListener("click",()=>render(b.dataset.goto)));
+const action=root.querySelector("#action");if(action)action.addEventListener("click",()=>act());
+}
+function act(){let message="Action fictive exécutée.";
+if(current==="clients"){if(!state.clients.some(c=>c[0]==="Entreprise Démo"))state.clients.push(["Entreprise Démo","Professionnel","nouveau prospect"]);message="Contact fictif ajouté."}
+if(current==="agenda"){if(!state.agenda.some(a=>a[0]==="16:00"))state.agenda.push(["16:00","Entreprise Démo","Découverte projet"]);message="Rendez-vous fictif ajouté."}
+if(current==="devis"){if(!state.devis.some(d=>d[0]==="DEV-2026-020"))state.devis.push(["DEV-2026-020","Entreprise Démo",350,"Brouillon"]);message="Devis fictif préparé."}
+if(current==="demandes"){const d=state.demandes.find(x=>x[2]==="À traiter");if(d){d[2]="Résolue";message="Demande fictive clôturée."}else message="Toutes les demandes fictives sont déjà traitées."}
+if(current==="taches"){const t=state.taches.find(x=>!x[2]);if(t){t[2]=true;message="Tâche fictive terminée."}else message="Toutes les tâches fictives sont terminées."}
+render(current);flash(message);
+}
+document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()=>render(b.dataset.tab)));
+render("dashboard");
+</script>
+</body>
+</html>
