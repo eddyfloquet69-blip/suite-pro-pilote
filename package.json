@@ -1,0 +1,12 @@
+{
+  "name": "revalo-tpe",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Pilot SaaS for contract renewal review and documented B2B price adjustments",
+  "engines": {"node": ">=22.13.0"},
+  "scripts": {
+    "start": "node --experimental-sqlite server.mjs",
+    "test": "node --experimental-sqlite --test test/*.test.mjs"
+  }
+}
