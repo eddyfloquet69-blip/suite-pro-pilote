@@ -86,6 +86,9 @@
             <label><input type="checkbox" name="manque" value="Synchronisation Google / Outlook"><span>Agenda synchronisé avec Google ou Outlook</span></label>
             <label><input type="checkbox" name="manque" value="Multi-utilisateurs"><span>Plusieurs salariés avec des comptes séparés</span></label>
             <label><input type="checkbox" name="manque" value="Encaissement en ligne"><span>Encaissement en ligne ou gestion de paiements</span></label>
+            <label><input type="checkbox" name="manque" value="Planning récurrent multi-sites"><span>Planning récurrent de plusieurs sites ou interventions</span></label>
+            <label><input type="checkbox" name="manque" value="Pointage et preuve de passage"><span>Pointage terrain, contrôle de présence ou photos de passage</span></label>
+            <label><input type="checkbox" name="manque" value="Gestion équipes et remplacements"><span>Affectation des équipes et remplacements d'agents</span></label>
             <label><input type="checkbox" name="manque" value="Autre fonction à préciser"><span>Autre fonction absente, à préciser</span></label>
           </div>
           <p class="hint" style="margin-top:13px">Ces fonctionnalités ne sont pas disponibles dans la démonstration. Vous pouvez malgré tout envoyer un retour.</p>
@@ -164,6 +167,8 @@
       try{await navigator.clipboard.writeText(message);copyInfo.textContent="Message copié. Collez-le dans votre messagerie pour l'envoyer.";}
       catch{copyInfo.textContent="Copie non disponible dans ce navigateur. Utilisez le lien email ci-dessus.";}
     });
+    const source=new URLSearchParams(location.search).get("source");
+    if(source==="nettoyage")sector.value="Nettoyage et services";
     render();
   })();
   </script>
