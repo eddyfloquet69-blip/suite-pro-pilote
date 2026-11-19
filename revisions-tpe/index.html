@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,follow">
+<meta name="description" content="Prototype de suivi des révisions de prix pour contrats récurrents des TPE. Simulateur gratuit avec indices fictifs, sans transmission de données.">
+<title>Révisions TPE — Vérifiez vos échéances contractuelles</title>
+<style>
+:root{--ink:#14233f;--blue:#395fca;--muted:#63718b;--line:#e1e8f2;--light:#f5f7fc;--green:#0d7255}
+*{box-sizing:border-box}html{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);line-height:1.5}body{margin:0;background:var(--light)}a{color:var(--blue)}
+header{background:#142342;color:white}.wrap{width:min(1110px,calc(100% - 36px));margin:auto}.nav{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;padding:17px 0}.brand{font-size:1.35rem;letter-spacing:-.05em;font-weight:900}.brand span{color:#a8bcff}.nav a{color:#d4e0ff;font-size:.9rem;text-decoration:none}
+main{padding:38px 0 55px}.intro{max-width:790px}.eyebrow{font-size:.76rem;font-weight:850;letter-spacing:.11em;text-transform:uppercase;color:#3455b0}h1{font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.06em;line-height:1.11;margin:10px 0 15px}.lead{font-size:1.08rem;color:#586783}
+.panel{border:1px solid var(--line);border-radius:17px;padding:26px;background:white;box-shadow:0 9px 30px #12263d0a}.columns{display:grid;grid-template-columns:1.05fr .95fr;gap:20px;align-items:start;margin-top:28px}.label{font-size:.88rem;font-weight:750;display:block;margin:13px 0 6px}.input{border:1px solid #bfcce1;border-radius:10px;padding:12px 13px;width:100%;color:var(--ink);font:inherit}.input:focus{outline:3px solid #d3deff}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:13px}.note{font-size:.87rem;color:var(--muted)}.result{border-radius:14px;background:#142a50;color:white;padding:24px}.result small{color:#bbcef2}.value{font-size:clamp(2rem,4vw,2.8rem);font-weight:850;letter-spacing:-.06em;line-height:1.25;margin:7px 0}.result .sub{color:#d2e1fa;font-size:.9rem}.flag{display:inline-block;border-radius:40px;padding:5px 11px;background:#324a75;color:#fff;font-weight:750;font-size:.82rem;margin:6px 0}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.button{display:inline-block;background:var(--blue);color:white;text-decoration:none;padding:12px 18px;border-radius:10px;font-weight:760}.button.secondary{background:white;color:#264ca0;border:1px solid #aabded}.result .button{background:#edf4ff;color:#244c9a}.smallTitle{font-size:1.16rem;font-weight:800;margin:0 0 11px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:25px 0}.card{background:white;padding:20px;border:1px solid var(--line);border-radius:13px}.card b{display:block;margin-bottom:7px}.card p{color:var(--muted);font-size:.91rem;margin:0}.warning{background:#fff3e7;border-left:4px solid #c28226;border-radius:10px;padding:15px;font-size:.9rem;color:#80501f;margin-top:17px}
+footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:.83rem}.foot{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+@media(max-width:800px){.columns{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.panel{padding:18px}.twocol{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><div class="brand">Révisions <span>TPE</span> <small style="font-weight:500;letter-spacing:0;font-size:.7rem">PROTOTYPE</small></div><a href="../">Autre projet du développeur</a></div></header>
+<main class="wrap">
+<section class="intro"><div class="eyebrow">Contrats récurrents · Nettoyage · Maintenance · Prestations B2B</div><h1>Une date de révision oubliée peut coûter cher.</h1><p class="lead">Vous gérez plusieurs contrats de prestations avec des clauses d'indexation ? Notre prototype aide à suivre les échéances, recalculer les prix et préparer les courriers — sans prétendre modifier automatiquement vos contrats.</p><div class="warning"><b>Phase de validation commerciale.</b> Aucun abonnement, compte hébergé ou paiement n'est ouvert sur cette page. Les chiffres présentés sont des simulations, pas des gains encaissés.</div></section>
+<section class="columns">
+<div class="panel">
+<h2 class="smallTitle">Calculateur de révision — sans inscription</h2><p class="note">L'exemple utilise des valeurs fictives. Remplacez-les uniquement si vous connaissez la formule prévue par votre contrat. Le calcul n'est pas une validation juridique.</p>
+<label class="label" for="price">Prix mensuel actuel, en € HT</label><input class="input" id="price" type="number" min="0" step="0.01" value="1200" inputmode="decimal">
+<div class="twocol"><div><label class="label" for="base">Indice de référence I₀</label><input class="input" id="base" type="number" min="0.000001" step="any" value="100" inputmode="decimal"></div><div><label class="label" for="current">Indice de révision Iₙ</label><input class="input" id="current" type="number" min="0.000001" step="any" value="104" inputmode="decimal"></div></div>
+<label class="label" for="formula">Formule prévue au contrat</label><select class="input" id="formula"><option value="ratio">Prix × Iₙ / I₀</option><option value="weighted">Prix × [part fixe + (1 − part fixe) × Iₙ / I₀]</option></select>
+<div id="fixedWrap" hidden><label class="label" for="fixed">Part fixe (0 à 1)</label><input class="input" id="fixed" type="number" min="0" max="1" step="0.01" value="0.10"></div>
+<p class="note">Une clause non applicable, un indice arrêté, une mauvaise période ou un changement de base peuvent rendre le résultat inutilisable. Vérifiez la clause et l'indice officiel avant toute révision.</p>
+<div class="actions"><a class="button secondary" href="https://www.insee.fr/fr/information/1300606" target="_blank" rel="noopener noreferrer">Méthode officielle Insee</a></div>
+</div>
+<aside class="result" aria-live="polite">
+<div class="smallTitle">Résultat indicatif</div><small>Nouveau prix mensuel HT calculé</small><div class="value" id="newPrice">—</div>
+<small>Différence mensuelle théorique</small><div class="value" id="difference">—</div>
+<small>Sur douze mensualités, si applicable</small><div class="value" id="annual">—</div>
+<div class="flag" id="flag">À valider</div><p class="sub" id="resultHint">La valeur affichée doit être justifiée par votre clause contractuelle et par les indices officiels.</p>
+<div class="actions"><a class="button" id="email" href="mailto:eddyfloquet69@gmail.com?subject=Etude%20pilote%20contrats">Donner mon avis sur ce prototype</a></div>
+<p class="sub" style="font-size:.79rem">La demande ouvre votre messagerie. Aucun texte ou donnée saisis ici n'est envoyé automatiquement ni enregistré sur un serveur.</p>
+</aside>
+</section>
+<section class="cards" aria-label="Fonctions du prototype serveur">
+<div class="card"><b>1. Centraliser les contrats</b><p>Prix, indice, valeur de référence, clause et prochaine échéance. Comptes séparés dans la version de développement.</p></div>
+<div class="card"><b>2. Éviter les oublis</b><p>Calendrier exportable avec alarmes à 30 jours et 7 jours. Pas de notifications email automatiques à ce stade.</p></div>
+<div class="card"><b>3. Suivre les résultats</b><p>Demande, validation, facture et règlement déclaré restent séparés des calculs théoriques.</p></div>
+</section>
+<section class="panel"><h2 class="smallTitle">Ce que nous cherchons à vérifier avant de vendre</h2><p class="note">Une entreprise de services doit déjà posséder des contrats comprenant des clauses de révision. Nous cherchons le nombre de contrats réellement concernés, le temps passé à suivre les indices, la fréquence des échéances oubliées et l'utilité des outils déjà disponibles.</p><p><b>Si vous utilisez déjà une solution gratuite satisfaisante, nous ne chercherons pas à vous vendre un doublon.</b> Votre retour reste utile pour décider si ce produit a une raison d'exister.</p><a class="button" href="mailto:eddyfloquet69@gmail.com?subject=Revisions%20TPE%20-%20Candidature%20test%20sans%20engagement&body=Bonjour%2C%0AJe%20souhaite%20donner%20mon%20avis%20sur%20ce%20prototype.%0AMon%20secteur%20%3A%0ANombre%20approximatif%20de%20contrats%20avec%20clause%20de%20revision%20%3A%0AMon%20outil%20actuel%20%3A">Proposer un entretien de dix minutes</a></section>
+</main>
+<footer><div class="wrap foot"><span>Étude pilote indépendante. Aucun conseil juridique, tarif ni gain garanti.</span><span><a href="https://www.insee.fr/fr/information/1300606" target="_blank" rel="noopener noreferrer">INSEE</a> · <a href="mailto:eddyfloquet69@gmail.com">Contact</a></span></div></footer>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);const money=new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR'});
+const ids=['price','base','current','formula','fixed'];
+function recompute(){
+$('fixedWrap').hidden=$('formula').value!=='weighted';
+const price=Number($('price').value),base=Number($('base').value),next=Number($('current').value),fixed=Number($('fixed').value);
+if(!Number.isFinite(price)||price<0||!Number.isFinite(base)||base<=0||!Number.isFinite(next)||next<=0||!Number.isFinite(fixed)||fixed<0||fixed>1){
+$('newPrice').textContent='—';$('difference').textContent='—';$('annual').textContent='—';$('flag').textContent='Données invalides';$('resultHint').textContent='Vérifiez les montants et valeurs d’indices.';return;}
+const ratio=next/base;const coeff=$('formula').value==='weighted'?fixed+(1-fixed)*ratio:ratio;
+const revised=Math.round(price*coeff*100)/100,delta=Math.round((revised-price)*100)/100;
+$('newPrice').textContent=money.format(revised);$('difference').textContent=(delta>0?'+':'')+money.format(delta);$('annual').textContent=(delta*12>0?'+':'')+money.format(delta*12);
+$('flag').textContent=delta>0?'Potentiel — non encaissé':delta<0?'Baisse contractuelle possible':'Aucun changement théorique';
+$('resultHint').textContent='Simulation uniquement. L’application de la clause et le paiement ne sont pas prouvés.';
+}
+for(const id of ids)$(id).addEventListener('input',recompute);
+recompute();
+})();
+</script>
+</body></html>
